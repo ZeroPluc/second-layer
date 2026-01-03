@@ -6,8 +6,6 @@
   <title>SECOND LAYER — Portfolio</title>
 
   <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
@@ -31,8 +29,44 @@
     <!-- CAROUSEL SECTION -->
     <div class="section">
       <h2>Portfolio</h2>
-      <div id="carousel" class="scroll-wrap">
-        <!-- Images will be inserted by JS -->
+      <div class="scroll-wrap">
+
+        <!-- LEFT PHOTO -->
+        <div class="item side">
+          <div class="thumb">
+            <img src="images/photo1.jpg" alt="Photo 1">
+          </div>
+        </div>
+
+        <!-- LEFT-CENTER PHOTO -->
+        <div class="item side">
+          <div class="thumb">
+            <img src="images/photo2.jpg" alt="Photo 2">
+          </div>
+        </div>
+
+        <!-- CENTER PHOTO -->
+        <div class="item center">
+          <div class="thumb">
+            <img src="images/photo3.jpg" alt="Photo 3">
+          </div>
+          <div class="caption">Featured Photo</div>
+        </div>
+
+        <!-- RIGHT-CENTER PHOTO -->
+        <div class="item side">
+          <div class="thumb">
+            <img src="images/photo4.jpg" alt="Photo 4">
+          </div>
+        </div>
+
+        <!-- RIGHT PHOTO -->
+        <div class="item side">
+          <div class="thumb">
+            <img src="images/photo5.jpg" alt="Photo 5">
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -52,89 +86,6 @@
       working across photography, classical painting, murals, and digital art.
     </p>
   </div>
-
-<script>
-// Manual list of images
-const images = [
-  'images/photo1.jpg',
-  'images/photo2.jpg',
-  'images/photo3.jpg',
-  'images/photo4.jpg',
-  'images/photo5.jpg'
-];
-
-const carousel = document.getElementById('carousel');
-
-// Create carousel items
-images.forEach((src, index) => {
-  const div = document.createElement('div');
-  div.className = index === 2 ? 'item center' : 'item side'; // middle item is center
-
-  const thumb = document.createElement('div');
-  thumb.className = 'thumb';
-
-  const img = document.createElement('img');
-  img.src = src;
-  img.alt = `Photo ${index + 1}`;
-  thumb.appendChild(img);
-  div.appendChild(thumb);
-
-  const caption = document.createElement('div');
-  caption.className = 'caption';
-  caption.textContent = index === 2 ? 'Featured Photo' : '';
-  div.appendChild(caption);
-
-  carousel.appendChild(div);
-});
-
-// Infinite scroll + center detection
-function setupCarousel(carousel) {
-  let items = Array.from(carousel.querySelectorAll('.item'));
-
-  // Duplicate items for infinite effect
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    carousel.appendChild(clone);
-  });
-
-  function updateCenter() {
-    const carouselRect = carousel.getBoundingClientRect();
-    const allItems = carousel.querySelectorAll('.item');
-    let closestItem = null;
-    let closestDistance = Infinity;
-
-    allItems.forEach(item => {
-      const itemRect = item.getBoundingClientRect();
-      const itemCenter = itemRect.left + itemRect.width / 2;
-      const carouselCenter = carouselRect.left + carouselRect.width / 2;
-      const distance = Math.abs(carouselCenter - itemCenter);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestItem = item;
-      }
-    });
-
-    allItems.forEach(item => item.classList.remove('center'));
-    if (closestItem) closestItem.classList.add('center');
-  }
-
-  let scrollSpeed = 0.5;
-  function animate() {
-    carousel.scrollLeft += scrollSpeed;
-    if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-      carousel.scrollLeft -= carousel.scrollWidth / 2;
-    }
-    updateCenter();
-    requestAnimationFrame(animate);
-  }
-  animate();
-
-  carousel.addEventListener('scroll', () => requestAnimationFrame(updateCenter));
-  window.addEventListener('resize', () => requestAnimationFrame(updateCenter));
-}
-
-setupCarousel(carousel);
-</script>
 
 </body>
 </html>

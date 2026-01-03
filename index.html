@@ -24,7 +24,7 @@
     <!-- TOP ICONS -->
     <div class="icons">
       <a href="https://www.instagram.com/zeropluc/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+      <a href="mailto:patryk.bialczak@gmail.com"><i class="fas fa-envelope"></i></a>
       <a href="tel:+48783558080"><i class="fas fa-phone"></i></a>
     </div>
 
@@ -32,14 +32,14 @@
     <div class="section">
       <h2>Portfolio</h2>
       <div id="carousel" class="scroll-wrap">
-        <!-- Images will be inserted here dynamically -->
+        <!-- Images will be inserted by JS -->
       </div>
     </div>
 
     <!-- BOTTOM ICONS -->
     <div class="icons">
       <a href="https://www.instagram.com/zeropluc/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+      <a href="mailto:patryk.bialczak@gmail.com"><i class="fas fa-envelope"></i></a>
       <a href="tel:+48783558080"><i class="fas fa-phone"></i></a>
     </div>
   </div>
@@ -54,11 +54,7 @@
   </div>
 
 <script>
-// Dynamically load all images from the images folder
-const carousel = document.getElementById('carousel');
-
-// **You must list the filenames here** because GitHub Pages does not allow reading folder contents dynamically via JS.
-// To simplify, list your images like this (you can add/remove without changing HTML):
+// Manual list of images
 const images = [
   'images/photo1.jpg',
   'images/photo2.jpg',
@@ -67,10 +63,12 @@ const images = [
   'images/photo5.jpg'
 ];
 
-// Create items in the carousel
+const carousel = document.getElementById('carousel');
+
+// Create carousel items
 images.forEach((src, index) => {
   const div = document.createElement('div');
-  div.className = index === 2 ? 'item center' : 'item side'; // middle item is center by default
+  div.className = index === 2 ? 'item center' : 'item side'; // middle item is center
 
   const thumb = document.createElement('div');
   thumb.className = 'thumb';
@@ -89,11 +87,11 @@ images.forEach((src, index) => {
   carousel.appendChild(div);
 });
 
-// Infinite scroll & center detection
+// Infinite scroll + center detection
 function setupCarousel(carousel) {
   let items = Array.from(carousel.querySelectorAll('.item'));
 
-  // Duplicate for infinite effect
+  // Duplicate items for infinite effect
   items.forEach(item => {
     const clone = item.cloneNode(true);
     carousel.appendChild(clone);

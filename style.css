@@ -15,13 +15,34 @@
 /* BASE */
 body {
   font-family: 'Inter', Helvetica, Arial, sans-serif;
-  background: linear-gradient(to top, rgba(230,57,70,1) 0%, rgba(0,0,0,0) 100%), #0b0b0b;
-  background-blend-mode: overlay;
+  background: #0b0b0b;
   color: var(--fg);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
 }
 
+/* Gradient overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(230,57,70,1) 0%, rgba(0,0,0,0) 100%);
+  z-index: 0;
+}
+
+/* Ensure content above gradient */
+.container, .about {
+  position: relative;
+  z-index: 1;
+}
+
+/* LINKS */
 a { color: inherit; text-decoration: none; }
 
 /* CONTAINER */
@@ -114,4 +135,3 @@ h1 {
 @media (max-width: 768px) {
   .container { padding: 3rem 2rem; }
 }
-

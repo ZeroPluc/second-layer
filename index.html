@@ -1,15 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Second Layer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SECOND LAYER — Portfolio</title>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Y4xAwNNhYJ5R1d1Y7lFkUg07s1Xn6Y1ykfY8rH+XKqUVbnT6JcU6ZPjx6+O17z1v0z5s2Hc0nmx9r9kqzt3qzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --fg: #f2f2f2;
+      --muted: #9a9a9a;
+      --accent: #e63946;
+      --offwhite: #f1efe9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .icons {
+      margin: 2rem 0 4rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      width: 3.2rem;
+      height: 3.2rem;
+      border: 1px solid #222;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      color: var(--fg);
+    }
+
+    .icons a:hover {
+      background: #1a1a1a;
+      color: var(--accent);
+    }
+
+    .section {
+      margin: 6rem 0;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .thumb {
+      aspect-ratio: 4 / 5;
+      background: #151515;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: transform 0.3s ease;
+    }
+
+    .thumb:hover { transform: scale(1.03); }
+
+    .about {
+      background: var(--offwhite);
+      color: #111;
+      padding: 4rem 2rem;
+      margin-top: 6rem;
+    }
+
+    .about h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .about p { max-width: 700px; margin: 0 auto; font-size: 1rem; }
+
+    @media (max-width: 768px) {
+      .container { padding: 3rem 2rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -18,18 +127,16 @@
     <div class="subtitle">Patryk Białczak — Portfolio</div>
 
     <div class="icons">
-  <a href="https://www.instagram.com/zeropluc/" target="_blank">
-    <i class="fab fa-instagram"></i>
-  </a>
-  <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank">
-    <i class="fas fa-envelope"></i>
-  </a>
-  <a href="tel:+48783558080">
-    <i class="fas fa-phone"></i>
-  </a>
-</div>
-
-
+      <a href="https://www.instagram.com/zeropluc/" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="tel:+48783558080">
+        <i class="fas fa-phone"></i>
+      </a>
+    </div>
 
     <div class="section">
       <h2>Photography</h2>
@@ -68,9 +175,15 @@
     </div>
 
     <div class="icons">
-      <a href="https://www.instagram.com/zeropluc/" target="_blank">Instagram</a>
-      <a href="mailto:patryk.bialczak@gmail.com">Email</a>
-      <a href="tel:+48783558080">Call / Text</a>
+      <a href="https://www.instagram.com/zeropluc/" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="tel:+48783558080">
+        <i class="fas fa-phone"></i>
+      </a>
     </div>
   </div>
 

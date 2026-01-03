@@ -2,10 +2,11 @@
 
 /* VARIABLES */
 :root {
-  --fg: #ffffff;
-  --muted: #b5b5b5;
-  --accent: #e63946;
-  --offwhite: #f1efe9;
+  --bg: #ffffff;
+  --fg: #000000;
+  --muted: #666666;
+  --border: #dddddd;
+  --offwhite: #f4f4f4;
 }
 
 /* RESET */
@@ -15,31 +16,27 @@
   padding: 0;
 }
 
-/* BODY AND GRADIENT BACKGROUND */
+/* BASE */
 body {
   font-family: 'Inter', Helvetica, Arial, sans-serif;
-  background: linear-gradient(to bottom, #0b0b0b 0%, #e63946 100%);
+  background: var(--bg);
   color: var(--fg);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  line-height: 1.6;
 }
 
 /* CONTAINER */
 .container {
-  padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 4rem 2rem;
   text-align: center;
-  position: relative;
-  z-index: 1;
 }
 
 /* HEADINGS */
 h1 {
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 800;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
 }
 
 .subtitle {
@@ -48,39 +45,39 @@ h1 {
   color: var(--muted);
 }
 
-/* ICON BUTTONS */
+/* ICONS */
 .icons {
-  margin: 2rem 0 4rem;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  margin: 2.5rem 0 4rem;
 }
 
 .icons a {
-  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  width: 3.2rem;
-  height: 3.2rem;
-  border: 1px solid #222;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+  font-size: 1.2rem;
   color: var(--fg);
+  transition: all 0.2s ease;
 }
 
 .icons a:hover {
-  background: #1a1a1a;
-  color: var(--accent);
+  background: #000;
+  color: #fff;
 }
 
 /* SECTIONS */
 .section {
-  margin: 6rem 0;
+  margin: 5rem 0;
 }
 
 .section h2 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin-bottom: 2rem;
 }
 
@@ -93,40 +90,40 @@ h1 {
 
 .thumb {
   aspect-ratio: 4 / 5;
-  background: #151515;
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.9rem;
   color: var(--muted);
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .thumb:hover {
   transform: scale(1.03);
 }
 
-/* ABOUT SECTION */
+/* ABOUT */
 .about {
   background: var(--offwhite);
-  color: #111;
   padding: 4rem 2rem;
-  margin-top: 6rem;
+  text-align: center;
 }
 
 .about h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin-bottom: 1rem;
 }
 
 .about p {
   max-width: 700px;
   margin: 0 auto;
-  font-size: 1rem;
+  color: var(--muted);
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 @media (max-width: 768px) {
   .container {
-    padding: 3rem 2rem;
+    padding: 3rem 1.5rem;
   }
 }

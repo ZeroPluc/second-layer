@@ -1,3 +1,5 @@
+/* style.css */
+
 /* VARIABLES */
 :root {
   --bg: #0b0b0b;
@@ -13,7 +15,8 @@
 /* BASE */
 body {
   font-family: 'Inter', Helvetica, Arial, sans-serif;
-  background: var(--bg);
+  background: linear-gradient(to top, rgba(230,57,70,1) 0%, rgba(0,0,0,0) 100%), #0b0b0b;
+  background-blend-mode: overlay;
   color: var(--fg);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -111,3 +114,4 @@ h1 {
 @media (max-width: 768px) {
   .container { padding: 3rem 2rem; }
 }
+

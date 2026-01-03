@@ -1,43 +1,142 @@
-<script>
-// Select all carousels
-const carousels = document.querySelectorAll('.scroll-wrap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SECOND LAYER — Portfolio</title>
 
-carousels.forEach(carousel => {
-  const items = carousel.querySelectorAll('.item');
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>SECOND LAYER</h1>
+    <div class="subtitle">Patryk Białczak — Portfolio</div>
+
+    <!-- TOP ICONS -->
+    <div class="icons">
+      <a href="https://www.instagram.com/zeropluc/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+48783558080"><i class="fas fa-phone"></i></a>
+    </div>
+
+    <!-- CAROUSEL SECTION -->
+    <div class="section">
+      <h2>Portfolio</h2>
+      <div id="carousel" class="scroll-wrap">
+        <!-- Images will be inserted here dynamically -->
+      </div>
+    </div>
+
+    <!-- BOTTOM ICONS -->
+    <div class="icons">
+      <a href="https://www.instagram.com/zeropluc/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+48783558080"><i class="fas fa-phone"></i></a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about">
+    <h3>About Me</h3>
+    <p>
+      Contemporary artist from Poland with roots in graffiti,
+      working across photography, classical painting, murals, and digital art.
+    </p>
+  </div>
+
+<script>
+// Dynamically load all images from the images folder
+const carousel = document.getElementById('carousel');
+
+// **You must list the filenames here** because GitHub Pages does not allow reading folder contents dynamically via JS.
+// To simplify, list your images like this (you can add/remove without changing HTML):
+const images = [
+  'images/photo1.jpg',
+  'images/photo2.jpg',
+  'images/photo3.jpg',
+  'images/photo4.jpg',
+  'images/photo5.jpg'
+];
+
+// Create items in the carousel
+images.forEach((src, index) => {
+  const div = document.createElement('div');
+  div.className = index === 2 ? 'item center' : 'item side'; // middle item is center by default
+
+  const thumb = document.createElement('div');
+  thumb.className = 'thumb';
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = `Photo ${index + 1}`;
+  thumb.appendChild(img);
+  div.appendChild(thumb);
+
+  const caption = document.createElement('div');
+  caption.className = 'caption';
+  caption.textContent = index === 2 ? 'Featured Photo' : '';
+  div.appendChild(caption);
+
+  carousel.appendChild(div);
+});
+
+// Infinite scroll & center detection
+function setupCarousel(carousel) {
+  let items = Array.from(carousel.querySelectorAll('.item'));
+
+  // Duplicate for infinite effect
+  items.forEach(item => {
+    const clone = item.cloneNode(true);
+    carousel.appendChild(clone);
+  });
 
   function updateCenter() {
     const carouselRect = carousel.getBoundingClientRect();
+    const allItems = carousel.querySelectorAll('.item');
     let closestItem = null;
     let closestDistance = Infinity;
 
-    items.forEach(item => {
+    allItems.forEach(item => {
       const itemRect = item.getBoundingClientRect();
       const itemCenter = itemRect.left + itemRect.width / 2;
       const carouselCenter = carouselRect.left + carouselRect.width / 2;
       const distance = Math.abs(carouselCenter - itemCenter);
-
       if (distance < closestDistance) {
         closestDistance = distance;
         closestItem = item;
       }
     });
 
-    // Remove center from all, then add to closest
-    items.forEach(item => item.classList.remove('center'));
+    allItems.forEach(item => item.classList.remove('center'));
     if (closestItem) closestItem.classList.add('center');
   }
 
-  // Initial update
-  updateCenter();
+  let scrollSpeed = 0.5;
+  function animate() {
+    carousel.scrollLeft += scrollSpeed;
+    if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+      carousel.scrollLeft -= carousel.scrollWidth / 2;
+    }
+    updateCenter();
+    requestAnimationFrame(animate);
+  }
+  animate();
 
-  // Update on scroll
-  carousel.addEventListener('scroll', () => {
-    requestAnimationFrame(updateCenter);
-  });
+  carousel.addEventListener('scroll', () => requestAnimationFrame(updateCenter));
+  window.addEventListener('resize', () => requestAnimationFrame(updateCenter));
+}
 
-  // Optional: update on resize
-  window.addEventListener('resize', () => {
-    requestAnimationFrame(updateCenter);
-  });
-});
+setupCarousel(carousel);
 </script>
+
+</body>
+</html>

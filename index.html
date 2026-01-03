@@ -1,63 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SECOND LAYER — Portfolio</title>
+<script>
+// Select all carousels
+const carousels = document.querySelectorAll('.scroll-wrap');
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+carousels.forEach(carousel => {
+  const items = carousel.querySelectorAll('.item');
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  function updateCenter() {
+    const carouselRect = carousel.getBoundingClientRect();
+    let closestItem = null;
+    let closestDistance = Infinity;
 
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    items.forEach(item => {
+      const itemRect = item.getBoundingClientRect();
+      const itemCenter = itemRect.left + itemRect.width / 2;
+      const carouselCenter = carouselRect.left + carouselRect.width / 2;
+      const distance = Math.abs(carouselCenter - itemCenter);
 
-  <div class="container">
-    <h1>SECOND LAYER</h1>
-    <div class="subtitle">Patryk Białczak — Portfolio</div>
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestItem = item;
+      }
+    });
 
-    <!-- TOP ICONS -->
-    <div class="icons">
-      <a href="https://www.instagram.com/zeropluc/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-      <a href="tel:+48783558080"><i class="fas fa-phone"></i></a>
-    </div>
+    // Remove center from all, then add to closest
+    items.forEach(item => item.classList.remove('center'));
+    if (closestItem) closestItem.classList.add('center');
+  }
 
-    <!-- PHOTOGRAPHY CAROUSEL -->
-    <div class="section">
-      <h2>Photography</h2>
-      <div class="scroll-wrap">
+  // Initial update
+  updateCenter();
 
-        <div class="item side"><div class="thumb"><img src="images/photo1.jpg" alt="Photo 1"></div></div>
-        <div class="item side"><div class="thumb"><img src="images/photo2.jpg" alt="Photo 2"></div></div>
-        <div class="item center"><div class="thumb"><img src="images/photo3.jpg" alt="Photo 3"></div><div class="caption">Featured Photo</div></div>
-        <div class="item side"><div class="thumb"><img src="images/photo4.jpg" alt="Photo 4"></div></div>
-        <div class="item side"><div class="thumb"><img src="images/photo5.jpg" alt="Photo 5"></div></div>
+  // Update on scroll
+  carousel.addEventListener('scroll', () => {
+    requestAnimationFrame(updateCenter);
+  });
 
-      </div>
-    </div>
-
-    <!-- BOTTOM ICONS -->
-    <div class="icons">
-      <a href="https://www.instagram.com/zeropluc/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://mail.google.com/mail/?view=cm&to=patryk.bialczak@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-      <a href="tel:+48783558080"><i class="fas fa-phone"></i></a>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <div class="about">
-    <h3>About Me</h3>
-    <p>
-      Contemporary artist from Poland with roots in graffiti,
-      working across photography, classical painting, murals, and digital art.
-    </p>
-  </div>
-
-</body>
-</html>
+  // Optional: update on resize
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(updateCenter);
+  });
+});
+</script>
